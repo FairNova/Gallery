@@ -15,6 +15,7 @@ services:
       - db
     volumes:
       - gallery_uploads:/app/uploads
+    restart: always
     networks:
       gallery_network:
 
