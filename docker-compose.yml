@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: gallery_app
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=db_example
+      - MYSQL_USER=springuser
+      - MYSQL_PASSWORD=ThePassword
+    depends_on:
+      - db
+    volumes:
+      - gallery_uploads:/app/uploads
+    networks:
+      gallery_network:
+
+  db:
+    image: mysql:8.0
+    container_name: gallery_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_example
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: ThePassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      gallery_network:
+        aliases:
+          - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: gallery_phpmyadmin
+    platform: linux/amd64
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8082:80"
+    depends_on:
+      - db
+    networks:
+      gallery_network:
+
+volumes:
+  mysql_data:
+  gallery_uploads:
+
+networks:
+  gallery_network:
+    driver: bridge

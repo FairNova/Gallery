@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Страница с полнокрановым фоном, шапкой и галереей</title>
+  <style>
+    /* Сброс стилей */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    /* ---------- ШАПКА ---------- */
+    .site-header {
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 999;
+      padding: 10px 0; /* Уменьшаем отступы сверху и снизу */
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center; /* Выравнивание элементов по центру */
+      justify-content: space-between;
+      height: 50px; /* Делаем шапку чуть уже */
+    }
+
+    .logo {
+      margin: 40px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center; /* Гарантируем, что текст логотипа на одной линии с навигацией */
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-menu li {
+      display: flex;
+      align-items: center; /* Центрируем ссылки в nav */
+    }
+
+    .nav-menu li a {
+      text-decoration: none;
+      color: #403f3f;
+      font-weight: 300;
+      transition: color 0.3s;
+      padding: 5px 0; /* Немного выравниваем текст */
+    }
+
+    .nav-menu li a:hover {
+      color: rgba(102, 191, 105, 0.75);
+    }
+
+    /* ---------- СЕКЦИЯ С ФОНОМ ---------- */
+    .hero-section {
+      background: url('/folhas-tropicais-em-fundo-branco_46250-2523.jpg') no-repeat center center/cover;
+      height: 98vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      color: #fff;
+      position: relative;
+    }
+    .hero-content {
+      max-width: 700px;
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 5px;
+      transform: translateY(-20%);
+    }
+    .hero-content h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+    .hero-content p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .call-to-action-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #66BF69BF;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .call-to-action-btn:hover {
+      background-color: rgba(174, 227, 176, 0.75);
+    }
+    .social-icons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .social-icons img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    /* ---------- ГАЛЕРЕЯ ---------- */
+    .gallery-section {
+      background-color: #fff;
+      padding: 40px 60px;  /* Увеличенные отступы от боковых краёв */
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 40px auto;
+      max-width: 900px;  /* Галерея уже и по центру */
+      border-radius: 8px;
+    }
+    .gallery-section h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    .gallery-description {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 10px;  /* Уменьшенный промежуток между фото */
+    }
+    .gallery img {
+      width: 60%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 0 auto;  /* Центрирование внутри ячейки */
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    }
+
+    /* ---------- АДАПТИВНОСТЬ ---------- */
+    @media (max-width: 600px) {
+      .header-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero-content {
+        transform: translateY(-5%);
+      }
+      .hero-content h1 {
+        font-size: 24px;
+      }
+      .hero-content p {
+        font-size: 14px;
+      }
+      .social-icons {
+        gap: 15px;
+      }
+      .social-icons img {
+        width: 36px;
+        height: 36px;
+      }
+      .gallery-section {
+        padding: 20px 30px;
+      }
+      .gallery-section h2 {
+        font-size: 18px;
+      }
+      .gallery-description {
+        font-size: 22px; /* Увеличенный размер шрифта */
+        font-weight: 500;
+        color: #333;
+        text-align: center;
+        max-width: 800px;
+        margin: 40px auto 40px; /* Отступы: больше снизу */
+        padding: 40px;
+        background: #fff; /* Фон */
+        border-radius: 10px; /* Скругление углов */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Добавленная тень */
+        line-height: 1.6
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<header class="site-header">
+  <div class="header-container">
+    <div class="logo">LOGO</div>
+    <ul class="nav-menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Секция с полнокрановым фоном -->
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Add your title</h1>
+    <p>
+      Use this space to elaborate on the ideas introduced in the title. Include the points that make the most sense for your brand. Briefly explain how your product works and the value it brings, so they feel compelled to give it a go.
+    </p>
+    <a href="/start" class="call-to-action-btn">CALL TO ACTION</a>
+  </div>
+
+  <div class="social-icons">
+    <img src="/fac2.png" alt="Facebook" />
+    <img src="/png-transparent-twitter-x-logo.png" alt="X (Twitter)" />
+    <img src="/Instagram-Emblem.png" alt="Instagram" />
+  </div>
+</section>
+
+<!-- Галерея -->
+<section class="gallery-section">
+  <h2>Gallery</h2>
+  <p class="gallery-description">The gallery will help you easily structure your albums and sections. Each image can become a unique cover, reflecting the content and mood of your collections. Add style, create convenient navigation, and enjoy a well-thought-out design!</p>
+  <div class="gallery">
+    <!-- Фотографии берутся из папки static -->
+    <img src="/album1.png" alt="Альбом 1" />
+    <img src="/album2.png" alt="Альбом 2" />
+    <img src="/album3.png" alt="Альбом 3" />
+    <img src="/album4.png" alt="Альбом 4" />
+    <img src="/album5.png" alt="Альбом 5" />
+    <img src="/album6.png" alt="Альбом 6" />
+  </div>
+</section>
+
+</body>
+</html>
